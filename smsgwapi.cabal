@@ -1,0 +1,60 @@
+name:                smsgwapi
+version:             0.1.0.0
+synopsis:            SMS gateway API client
+description:         Not much
+homepage:            https://github.com/sorki/smsgwapi
+license:             BSD3
+license-file:        LICENSE
+author:              Richard Marko
+maintainer:          srk@48.io
+copyright:           2019 Richard Marko
+category:            Monitoring
+build-type:          Simple
+-- extra-source-files:
+cabal-version:       >=1.10
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     SMSAPI
+                     , SMSAPI.Config
+                     , SMSAPI.Parse
+                     , SMSAPI.Types
+  build-depends:       base >= 4.7 && < 5
+                     , binary
+                     , bytestring
+                     , config-ini
+                     , cryptonite
+                     , directory
+                     , filepath
+                     , hxt
+                     , lens
+                     , memory
+                     , mtl
+                     , random
+                     , text
+                     , time
+                     , wreq
+  ghc-options:         -Wall
+  default-language:    Haskell2010
+
+executable smsgwcredit
+  hs-source-dirs:      app
+  main-is:             Credit.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , smsgwapi
+  default-language:    Haskell2010
+
+executable smsgwsend
+  hs-source-dirs:      app
+  main-is:             Main.hs
+  ghc-options:         -threaded -rtsopts -with-rtsopts=-N
+  build-depends:       base
+                     , text
+                     , smsgwapi
+  default-language:    Haskell2010
+ 
+
+source-repository head
+  type:     git
+  location: https://github.com/vpsfreecz/smsgwapi
